@@ -1,9 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Practic_10
 {
-    internal class Client : INotifyPropertyChanged
+    internal class Client : INotifyPropertyChanged, IComparable
     {
         private string lastName; 
         private string firstName; 
@@ -100,6 +102,14 @@ namespace Practic_10
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public int CompareTo(object? obj)
+        {
+            if(obj is Client client)
+                return LastName.CompareTo(client.LastName);
+            else
+                throw new ArgumentException("Некорректное значение параметра");
         }
     }
 }

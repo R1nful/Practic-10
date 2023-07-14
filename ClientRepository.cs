@@ -1,4 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Documents;
+using System.Windows.Input;
 
 namespace Practic_10
 {
@@ -7,6 +12,13 @@ namespace Practic_10
         private static ObservableCollection<Client> clients;
 
         internal static ObservableCollection<Client> Clients { get => clients; set => clients = value; }
+
+        private static string @path = "data.xml";
+
+        static ClientRepository()
+        {
+            clients =  XmlFile.ReadFromFile(path);
+        }
 
         /// <summary>
         /// Метод длбавления нового клиента в список клиентов
@@ -23,7 +35,23 @@ namespace Practic_10
         /// <param name="index"></param>
         public static void RemoveNewClient(int index)
         {
-            clients.RemoveAt(index);
+            if(index!=-1)
+                clients.RemoveAt(index);
+        }
+
+        /// <summary>
+        /// Метод сортировки массива
+        /// </summary>
+        public static void SortList()
+        {
+            List<Client> ls = clients.OrderBy(p=>p).Select(p => p).ToList();
+
+            clients.Clear();
+
+            foreach (Client client in ls)
+            {
+                clients.Add(client);
+            }
         }
     }
 }

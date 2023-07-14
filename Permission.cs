@@ -1,5 +1,18 @@
 ﻿namespace Practic_10
 {
+
+    /// <summary>
+    /// Список перечеслений полей
+    /// </summary>
+    public enum Active
+    {
+        LastName,
+        FirstName,
+        Patronymic,
+        Phone,
+        Passport
+    }
+
     static internal class Permission
     {
         private const short rightChange = 0;
@@ -13,17 +26,7 @@
 
         private static string path = "Change.xml";
 
-        /// <summary>
-        /// Список перечеслений полей
-        /// </summary>
-        public enum Active
-        {
-            LastName,
-            FirstName,
-            Patronymic,
-            Phone,
-            Passport
-        }
+        
 
         /// <summary>
         /// Изменение поля клиента

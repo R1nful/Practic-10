@@ -12,9 +12,9 @@ namespace Practic_10
         /// </summary>
         /// <param name="path"></param>
         /// <param name="clients"></param>
-        static public void ReadFromFile(string path, out ObservableCollection<Client> clients)
+        static public ObservableCollection<Client> ReadFromFile(string path)
         {
-            clients = new ObservableCollection<Client> ();
+            ObservableCollection<Client>  clients = new ObservableCollection<Client> ();
 
             XDocument xdoc = XDocument.Load(path);
 
@@ -24,6 +24,8 @@ namespace Practic_10
             {
                 clients.Add(new Client(ReturnXmlValue(client)));
             }
+
+            return clients;
         }
 
         /// <summary>

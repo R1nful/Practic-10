@@ -64,37 +64,42 @@
             Grid.Row="5" 
             FontSize="20" 
             Click="ChangeButton_Click"/>
-        
+
         <ListBox x:Name="ClientFieldsListBox" 
             Grid.Row="2"
             Grid.Column="2"
             Grid.RowSpan="6" 
                  SelectionChanged="ClientFieldsListBox_SelectionChanged"/>
-        
+
         <TextBlock x:Name="AccessLebel"
             IsEnabled="False"
             Grid.Column="5" 
             Grid.Row="2"/>
-        
+
         <Button x:Name="SaveButton"
             FontSize="20" 
             Content="Сохранить"
             Grid.Column="4" 
             Grid.Row="7" Click="SaveButton_Click"/>
-        
+
         <Button x:Name="AddClientButton"
             FontSize="16"
             Content="Добавить клиента" 
             Grid.Column="4" 
             Grid.Row="9" Click="AddClientButton_Click"
             />
-        
+
         <Button x:Name="RemoveClientButton"
             FontSize="16"
             Content="Удалить клиента" 
             Grid.Column="4" 
             Grid.Row="11" Click="RemoveClientButton_Click"
             />
+        <Button x:Name="SortButton" 
+            Content="Сортировать"
+                Margin="0,70,0,0"
+                VerticalAlignment="Top" 
+                Click="SortButton_Click"/>
 
     </Grid>
 </Window>

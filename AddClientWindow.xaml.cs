@@ -14,7 +14,7 @@ namespace Practic_10
 
         private void SaveNewClient_Click(object sender, RoutedEventArgs e)
         {
-            string[] arr = new string[] { 
+            string[] arr = new string[] {
                 LastNameTextBox.Text,
                 FirstNameTextBox.Text,
                 PatronymicTextBox.Text,
@@ -22,11 +22,24 @@ namespace Practic_10
                 PassportTextBox.Text
             };
 
-            ClientRepository.AddNewClient(arr);
-
-            this.Close();
+            if (IsComplete(arr))
+            {
+                ClientRepository.AddNewClient(arr);
+                this.Close();
+            }
+            else
+                ErrorLable.Text = "Ошибка. Не все поля заполнены";
         }
 
-        
+        private bool IsComplete(string[] arr)
+        {
+            foreach (string s in arr)
+            {
+                if(s.Trim() == "")
+                    return false;
+            }
+
+            return true;
+        }
     }
 }

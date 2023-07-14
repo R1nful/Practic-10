@@ -4,6 +4,7 @@ using System.Windows.Controls;
 
 namespace Practic_10
 {
+
     public partial class MainWindow : Window
     {
         private BankWorker bankWorker;
@@ -21,10 +22,6 @@ namespace Practic_10
         public MainWindow()
         {
             InitializeComponent();
-
-            XmlFile.ReadFromFile(path, out ObservableCollection<Client> clients);
-
-            ClientRepository.Clients = clients;
 
             ClientListBox.ItemsSource = ClientRepository.Clients;
 
@@ -94,6 +91,9 @@ namespace Practic_10
         /// </summary>
         private void ChangeValueTextBox()
         {
+            if (ClientListBox.SelectedItems.Count == 0)
+                return;
+            
             Client choseClient = ClientListBox.SelectedItems[0] as Client;
 
             string newValue = ChangeTextBox.Text;
@@ -105,27 +105,27 @@ namespace Practic_10
             switch (choseIndex)
             {
                 case 0:
-                    answerCode = Permission.ChangeClientField(bankWorker, ref choseClient, Permission.Active.LastName, newValue);
+                    answerCode = Permission.ChangeClientField(bankWorker, ref choseClient, Active.LastName, newValue);
                     OutputChoseAnswer(answerCode);
                     break;
 
                 case 1:
-                    answerCode = Permission.ChangeClientField(bankWorker, ref choseClient, Permission.Active.FirstName, newValue);
+                    answerCode = Permission.ChangeClientField(bankWorker, ref choseClient, Active.FirstName, newValue);
                     OutputChoseAnswer(answerCode);
                     break;
 
                 case 2:
-                    answerCode = Permission.ChangeClientField(bankWorker, ref choseClient, Permission.Active.Patronymic, newValue);
+                    answerCode = Permission.ChangeClientField(bankWorker, ref choseClient, Active.Patronymic, newValue);
                     OutputChoseAnswer(answerCode);
                     break;
 
                 case 3:
-                    answerCode = Permission.ChangeClientField(bankWorker, ref choseClient, Permission.Active.Phone, newValue);
+                    answerCode = Permission.ChangeClientField(bankWorker, ref choseClient, Active.Phone, newValue);
                     OutputChoseAnswer(answerCode);
                     break;
 
                 case 4:
-                    answerCode = Permission.ChangeClientField(bankWorker, ref choseClient, Permission.Active.Passport, newValue);
+                    answerCode = Permission.ChangeClientField(bankWorker, ref choseClient, Active.Passport, newValue);
                     OutputChoseAnswer(answerCode);
                     break;
             }
@@ -165,11 +165,11 @@ namespace Practic_10
         private void RetrieveData(Client? client)
         {
             ObservableCollection<string> clientFields = new ObservableCollection<string>() {
-                Permission.ReadClientField(bankWorker, client, Permission.Active.LastName),
-                Permission.ReadClientField(bankWorker, client, Permission.Active.FirstName),
-                Permission.ReadClientField(bankWorker, client, Permission.Active.Patronymic),
-                Permission.ReadClientField(bankWorker, client, Permission.Active.Phone),
-                Permission.ReadClientField(bankWorker, client, Permission.Active.Passport)
+                Permission.ReadClientField(bankWorker, client, Active.LastName),
+                Permission.ReadClientField(bankWorker, client, Active.FirstName),
+                Permission.ReadClientField(bankWorker, client, Active.Patronymic),
+                Permission.ReadClientField(bankWorker, client, Active.Phone),
+                Permission.ReadClientField(bankWorker, client, Active.Passport)
             };
 
             ClientFieldsListBox.ItemsSource = clientFields;
@@ -216,6 +216,11 @@ namespace Practic_10
             {
                 AccessLebel.Text = errorAcsses;
             }
+        }
+
+        private void SortButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClientRepository.SortList();
         }
     }
 }

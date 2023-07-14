@@ -105,6 +105,14 @@
             Content="Сохранить"
             Grid.Row="11"
             Grid.Column="3" Click="SaveNewClient_Click"/>
+        
+        <TextBlock x:Name="ErrorLable"
+            FontSize="9.5"
+            Foreground="Red"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Grid.Row="11"
+            Grid.Column="1" AllowDrop="True"/>
 
     </Grid>
 </Window>
