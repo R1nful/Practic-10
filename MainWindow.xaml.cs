@@ -218,6 +218,11 @@ namespace Practic_10
             }
         }
 
+        /// <summary>
+        /// Нажатие на кнопку сортировкиы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SortButton_Click(object sender, RoutedEventArgs e)
         {
             ClientRepository.SortList();

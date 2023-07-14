@@ -40,7 +40,7 @@ namespace Practic_10
         }
 
         /// <summary>
-        /// Метод сортировки массива
+        /// Метод сортировки массива клиентов
         /// </summary>
         public static void SortList()
         {
